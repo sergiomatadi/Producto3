@@ -19,6 +19,7 @@ Route::get('/', function () {
 
 Route::resource('students','App\Http\Controllers\StudentsController');
 Route::resource('courses','App\Http\Controllers\CoursesController');
+Route::resource('teachers','App\Http\Controllers\TeachersController');
 
 Route::middleware([
     'auth:sanctum',

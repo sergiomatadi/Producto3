@@ -11,7 +11,7 @@
     <title>CodersTeam</title>
   </head>
   <body class="bg-light">
-    <div class="container ">
+    <div class="container mt-4">
         @yield('content')
     </div>
 

@@ -1,7 +1,8 @@
 @extends('layouts.base')
 
-@section('content')
-<div class="row mt-4 align-items-center justify-center">
+
+<div class="container d-flex justify-content-center align-items-center h-100">
+    <section class="login d-flex flex-column justify-content-center align-items-center rounded-3 bg-white w-50 P-5">
 <form action="{{ url('/students') }}" method="post" enctype="multipart/form-data" >
 @csrf
 <div class="row align-items-center mb-3">
@@ -37,4 +38,3 @@
 </div>
 </form>
 </div>
-@endsection

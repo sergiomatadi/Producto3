@@ -82,9 +82,8 @@ class StudentsController extends Controller
         students::where('id','=',$id)->update($dateStudents);
 
 
-        $students=students::findOrFail($id);
-        return view('students.index', compact('students') );
-
+        
+        return redirect('students')->with('message','Estudiante editado correctamente');
     }
 
     /**

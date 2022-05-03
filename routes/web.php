@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\Security;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +21,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('students','App\Http\Controllers\StudentsController');
-Route::resource('courses','App\Http\Controllers\CoursesController');
-Route::resource('teachers','App\Http\Controllers\TeachersController');
+
 
 Route::middleware([
     'auth:sanctum',
@@ -29,6 +31,12 @@ Route::middleware([
     Route::get('/dash', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('students',StudentsController::class)->names('students.index');
+    Route::resource('courses',CoursesController::class)->names('courses.index');
+    Route::resource('teachers',TeachersController::class)->names('teachers.index');
+    Route::get('permissions',[Security\PermissionsController::class, 'index'])->name('permissions.index');
+
 });
 
 

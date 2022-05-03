@@ -45,12 +45,12 @@ return [
     |
     */
 
-    'logo' => '<b>Admin</b>LTE',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
-    'logo_img_class' => 'brand-image img-circle elevation-3',
+    'logo' => '<b>CordesTeam</b>',
+    'logo_img' => null,
+    'logo_img_class' => null,
     'logo_img_xl' => null,
-    'logo_img_xl_class' => 'brand-image-xs',
-    'logo_img_alt' => 'AdminLTE',
+    'logo_img_xl_class' => null,
+    'logo_img_alt' => null,
 
     /*
     |--------------------------------------------------------------------------
@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'admin',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -237,43 +237,45 @@ return [
         ],
 
         // Sidebar items:
-        [
-            'type' => 'sidebar-menu-search',
-            'text' => 'search',
-        ],
+
         [
             'text' => 'blog',
             'url'  => 'admin/blog',
             'can'  => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
+            'text'        => 'Usuarios',
+            'route'         => 'admin.users.index',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+  
         ],
         ['header' => 'account_settings'],
         [
             'text' => 'Estudiantes',
-            'url'  => 'admin/settings',
+            'url'  => 'students','App\Http\Controllers\StudentsController',
+            'icon' => 'fas fa-fw fa-user-graduate',
+        ],
+        [
+            'text' => 'Profesores',
+            'url'  => 'teachers','App\Http\Controllers\TeachersController',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
+            'text' => 'Cursos',
+            'url'  => 'courses','App\Http\Controllers\CoursesController',
+            'icon' => 'fas fa-fw fa-book',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Cursos',
+            'url'  => 'courses','App\Http\Controllers\CoursesController',
+            'icon'    => 'fas fa-fw fa-book',           
             'submenu' => [
                 [
-                    'text' => 'level_one',
+                    'text' => 'Asignaturas',
                     'url'  => '#',
                 ],
                 [
-                    'text'    => 'level_one',
+                    'text'    => 'PVP',
                     'url'     => '#',
                     'submenu' => [
                         [

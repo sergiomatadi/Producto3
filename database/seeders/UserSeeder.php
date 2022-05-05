@@ -22,7 +22,7 @@ class UserSeeder extends Seeder
         $role2 = Role::create(['name' => 'Teacher']);
         $role3 = Role::create(['name' => 'Students']);
 
-        Permission::create(['name' =>'admin.home'])->syncRoles([$role1,$role2]);
+        Permission::create(['name' =>'admin.home'])->syncRoles([$role1]);
 
         Permission::create(['name' =>'admin.users.index'])->syncRoles([$role1]);
         Permission::create(['name' =>'admin.users.edit'])->syncRoles([$role1]);
@@ -35,11 +35,11 @@ class UserSeeder extends Seeder
         Permission::create(['name' =>'students.index.destroy'])->syncRoles([$role1,$role2]);      
 
         Permission::create(['name' =>'teachers.index'])->syncRoles([$role1,$role2]);  
-        Permission::create(['name' =>'teachers.index.create'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' =>'teachers.index.edit'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' =>'teachers.index.destroy'])->syncRoles([$role1,$role2]);    
+        Permission::create(['name' =>'teachers.index.create'])->syncRoles([$role1]);
+        Permission::create(['name' =>'teachers.index.edit'])->syncRoles([$role1]);
+        Permission::create(['name' =>'teachers.index.destroy'])->syncRoles([$role1]);    
 
-        Permission::create(['name' =>'courses.index'])->syncRoles([$role1,$role2]);  
+        Permission::create(['name' =>'courses.index'])->syncRoles([$role1,$role2,$role3]);  
         Permission::create(['name' =>'courses.index.create'])->syncRoles([$role1,$role2]);
         Permission::create(['name' =>'courses.index.edit'])->syncRoles([$role1,$role2]);
         Permission::create(['name' =>'courses.index.destroy'])->syncRoles([$role1,$role2]);    
@@ -51,6 +51,13 @@ class UserSeeder extends Seeder
         $user->password = bcrypt('12345678');
         $user->save();
         $user->assignRole($role1);
+
+        $user=new User;
+        $user->name = 'Ser';
+        $user->email = 'ser@mail.com';
+        $user->password = bcrypt('12345678');
+        $user->save();
+        $user->assignRole($role2);
      
     }
 }

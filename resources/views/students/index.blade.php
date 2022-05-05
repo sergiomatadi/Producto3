@@ -18,8 +18,7 @@
             <th scope="col">NIF</th>
             <th scope="col">Fecha de registro</th>
             <th scope="col">Acciones</th>
-
-
+            <th scope="col"></th>
         <tr>
     </thead>
     <tbody>
@@ -33,21 +32,17 @@
             <td>{{ $students->telephone }}</td>
             <td>{{ $students->nif }}</td>
             <td>{{ $students->date_registered }}</td>
-            <td>
-            
-            <a href="{{ url('/students/'.$students->id.'/edit') }}"class="text-decoration-none mt-1"><input type="submit" style="text-decoration:none" value="Editar">
-     
-            </a>    
-       
-
-            <form action="{{ url('/students/'.$students->id ) }}" method="post">
-            @csrf
-            {{ method_field('DELETE') }}
-            <input type="submit" class="mt-3"onclick="return confirm('¿Quieres eliminar?')" value="Borrar">
-            </form>
-
+            <td width="10px">            
+                <a href="{{ url('/students/'.$students->id.'/edit') }}"class="btn btn-warning btn-sm">Editar        
+                </a>
             </td>
-
+            <td width="10px">
+                <form action="{{ url('/students/'.$students->id ) }}" method="post">
+                @csrf
+                {{ method_field('DELETE') }}
+                <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
+                </form>
+            </td>
         </tr>
     @endforeach
     </tbody>

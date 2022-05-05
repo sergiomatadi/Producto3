@@ -188,7 +188,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'admin',
+    'dashboard_url' => 'dash',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -247,23 +247,31 @@ return [
             'text'        => 'Usuarios',
             'route'         => 'admin.users.index',
             'icon'        => 'far fa-fw fa-file',
+            'can'  => 'admin.users.index',
+
   
         ],
-        ['header' => 'account_settings'],
+     
         [
             'text' => 'Estudiantes',
             'url'  => 'students','App\Http\Controllers\StudentsController',
             'icon' => 'fas fa-fw fa-user-graduate',
+            'can'  => 'admin.users.index',
+            'can'  => 'teachers.index',
         ],
         [
             'text' => 'Profesores',
             'url'  => 'teachers','App\Http\Controllers\TeachersController',
             'icon' => 'fas fa-fw fa-user',
+            'can'  => 'admin.users.index',
+            'can'  => 'teachers.index',
+           
         ],
         [
             'text' => 'Cursos',
             'url'  => 'courses','App\Http\Controllers\CoursesController',
             'icon' => 'fas fa-fw fa-book',
+
         ],
         [
             'text'    => 'Cursos',

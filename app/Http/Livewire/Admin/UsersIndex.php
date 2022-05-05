@@ -15,11 +15,15 @@ class UsersIndex extends Component
 
     protected $paginationTheme = "bootstrap";
 
+    public function updatingSearch(){
+        $this->resetPage();
+    }
+
 
     public function render()
     {
-        $users = User::where('name', 'LIKE' , '%'. $this->search . '%')
-        ->orwhere('email','LIKE', '%'. $this->search . '%')
+        $users = User::where('name', 'LIKE' , '%'.$this->search. '%')
+        ->orwhere('email','LIKE', '%'.$this->search. '%')
         ->paginate();
         return view('livewire.admin.users-index', compact('users'));
     }

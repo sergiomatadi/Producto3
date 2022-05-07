@@ -13,5 +13,9 @@ class Courses extends Model
     ];
     protected $dates = ['date_start', 'date_end'];
 
+    public function subjects() {
+        return $this->hasMany(Subject::class);
+    }
+
 
 }

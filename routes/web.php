@@ -21,6 +21,7 @@ Route::resource('students','App\Http\Controllers\StudentsController');
 Route::resource('courses','App\Http\Controllers\CoursesController');
 Route::resource('teachers','App\Http\Controllers\TeachersController');
 Route::resource('subjects','App\Http\Controllers\SubjectController');
+Route::resource('schedules','App\Http\Controllers\ScheduleController');
 
 Route::middleware([
     'auth:sanctum',

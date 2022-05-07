@@ -1,36 +1,36 @@
 @extends('adminlte::page')
-@section ('title', 'Asignaturas')
+@section ('title', 'Horarios')
 @section ('content_header')
-<h1>Asignaturas</h1>
+<h1>Horarios</h1>
 @stop
 
 @section ('content')
-<a href="subjects/create" class="btn btn-primary mt-4">CREAR</a>
+<a href="schedules/create" class="btn btn-primary mt-4">CREAR</a>
 <table class="table table-striped table-light mt-4">
     <thead class="thead-light">
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">Color</th>
-            <th scope="col">Curso</th>
-            <th scope="col">Profesor</th>
+            <th scope="col">Día</th>
+            <th scope="col">Inicio</th>
+            <th scope="col">Fin</th>
+            <th scope="col">Asignatura</th>
         <tr>
     </thead>
     <tbody>
-    @foreach( $subjects as $subject )
+    @foreach( $schedules as $schedule )
         <tr>
-            <td>{{ $subject->id }}</td>
-            <td>{{ $subject->name }}</td>
-            <td>{{ $subject->color }}</td>
-            <td>{{ $subject->course }}</td>
-            <td>{{ $subject->teacher }}</td>
+            <td>{{ $schedule->id }}</td>
+            <td>{{ $schedule->day }}</td>
+            <td>{{ $schedule->time_start }}</td>
+            <td>{{ $schedule->time_end }}</td>
+            <td>{{ $schedule->subject }}</td>
             <td>
 
-            <a href="{{ url('/subjects/'.$subject->id.'/edit') }}"class="text-decoration-none mt-1"><input type="submit" style="text-decoration:none" value="Editar">
+            <a href="{{ url('/schedules/'.$schedule->id.'/edit') }}"class="text-decoration-none mt-1"><input type="submit" style="text-decoration:none" value="Editar">
             </a>
 
 
-            <form action="{{ url('/subjects/'.$subject->id ) }}" method="post">
+            <form action="{{ url('/schedules/'.$schedule->id ) }}" method="post">
             @csrf
             {{ method_field('DELETE') }}
             <input type="submit" class="mt-3"onclick="return confirm('¿Quieres eliminar?')" value="Borrar">

@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentsController;
+use App\Http\Controllers\CoursesController;
+use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\Security;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +27,7 @@ Route::resource('teachers','App\Http\Controllers\TeachersController');
 Route::resource('subjects','App\Http\Controllers\SubjectController');
 Route::resource('schedules','App\Http\Controllers\ScheduleController');
 
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
@@ -31,6 +36,12 @@ Route::middleware([
     Route::get('/dash', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::resource('students',StudentsController::class)->names('students.index');
+    Route::resource('courses',CoursesController::class)->names('courses.index');
+    Route::resource('teachers',TeachersController::class)->names('teachers.index');
+    Route::get('permissions',[Security\PermissionsController::class, 'index'])->name('permissions.index');
+
 });
 
 

@@ -249,9 +249,9 @@ return [
             'icon'        => 'far fa-fw fa-file',
             'can'  => 'admin.users.index',
 
-  
+
         ],
-     
+
         [
             'text' => 'Estudiantes',
             'url'  => 'students','App\Http\Controllers\StudentsController',
@@ -265,7 +265,7 @@ return [
             'icon' => 'fas fa-fw fa-user',
             'can'  => 'admin.users.index',
             'can'  => 'teachers.index',
-           
+
         ],
         [
             'text' => 'Cursos',
@@ -274,9 +274,21 @@ return [
 
         ],
         [
+            'text' => 'Asignaturas',
+            'url'  => 'subjects','App\Http\Controllers\SubjectController',
+            'icon' => 'fas fa-fw fa-book',
+
+        ],
+        [
+            'text' => 'Horario',
+            'url'  => 'schedules','App\Http\Controllers\ScheduleController',
+            'icon' => 'fas fa-fw fa-book',
+
+        ],
+        [
             'text'    => 'Cursos',
             'url'  => 'courses','App\Http\Controllers\CoursesController',
-            'icon'    => 'fas fa-fw fa-book',           
+            'icon'    => 'fas fa-fw fa-book',
             'submenu' => [
                 [
                     'text' => 'Asignaturas',

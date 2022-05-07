@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('color');
             $table->foreignId('id_course');
             $table->foreignId('id_teacher');
-            $table->foreignId('id_schedule');
+            $table->foreignId('id_schedule')->nullable();
             $table->timestamps();
         });
     }

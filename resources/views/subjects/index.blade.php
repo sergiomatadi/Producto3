@@ -5,7 +5,9 @@
 @stop
 
 @section ('content')
+@can('admin.users.index')
 <a href="subjects/create" class="btn btn-primary mt-4">CREAR</a>
+@endcan
 <table class="table table-striped table-light mt-4">
     <thead class="thead-light">
         <tr>

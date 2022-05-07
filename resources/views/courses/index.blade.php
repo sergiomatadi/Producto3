@@ -5,7 +5,7 @@
 @stop
 
 @section ('content')
-@can('courses.index.create')
+@can('admin.users.index')
 <a href="courses/create" class="btn btn-primary mt-4">CREAR</a>
 @endcan
 <table class="table table-striped table-light mt-4">
@@ -35,7 +35,7 @@
                 <a href="{{ url('/courses/'.$course->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
                 </a>
             </td>
-            <td width="10px">        
+            <td width="10px">
                 <form action="{{ url('/courses/'.$course->id ) }}" method="post">
                 @csrf
                     {{ method_field('DELETE') }}

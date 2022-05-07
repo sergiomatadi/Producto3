@@ -7,6 +7,14 @@ use Illuminate\Http\Request;
 
 class TeachersController extends Controller
 {
+
+    public function __construct(){
+
+        $this->middleware('can:teachers.index')->only('index');
+        $this->middleware('can:teachers.index.create')->only('create');
+        $this->middleware('can:teachers.index.edit')->only('edit', 'update');
+        $this->middleware('can:teachers.index.destroy')->only('destroy');
+    }
     /**
      * Display a listing of the resource.
      *

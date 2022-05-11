@@ -20,10 +20,11 @@
                     {{ $course->name }}
                 </option>
                 @endforeach
+            </select>
                 <div class="row  mb-3">
                     <div class="" style="width: 18rem">
                         <ul class="list-group list-group-flush">
-                            <label for="status" class="form-label"> ConfirmaActivo </label>
+                            <label for="status" class="form-label"> Confirma: </label>
                             <input type="checkbox" name="status" class="switch-input" value="1" {{ isset($enrollments)
                                 && $enrollments->status ? 'checked="checked"' : '' }}/>
                         </ul>
@@ -39,3 +40,6 @@
 </div>
 </div>
 </div>
+
+
+

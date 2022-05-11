@@ -14,9 +14,9 @@
         <tr>
     </thead>
     <tbody>
-        @foreach( $enrollments as $enrollment )
+
         <tr>
-            <td>{{ $enrollment->id }}</td>
+            <td></td>
             <td></td>
             <td></td>
             <td></td>
@@ -26,7 +26,7 @@
             
             </td>
         </tr>            
-@endforeach
+
     </tbody>
 </table>
 @stop

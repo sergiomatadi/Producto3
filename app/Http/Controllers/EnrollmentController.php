@@ -19,8 +19,11 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        
-        return view ('enrollments.index', $date);
+      
+        $student = Students::find(1);
+        $course = Courses::find(1);
+
+        return view ('enrollments.index', compact('student','course'));
     }
 
     /**
@@ -31,7 +34,7 @@ class EnrollmentController extends Controller
     public function create()
 
     {
-        
+       
         $user = auth()->user();
         $teachers=teachers::all();
         $courses=courses::all();

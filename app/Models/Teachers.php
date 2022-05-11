@@ -16,4 +16,7 @@ class Teachers extends Model
     public function schedules() {
         return $this->belongsToMany(Schedule::class,'teachers:schedules');
     }
+    public function enrollments() {
+        return $this->belongsToMany(Enrollments::class,'teachers:enrollments');
+    }
 }

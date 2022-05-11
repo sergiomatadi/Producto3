@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section ('title', 'Dashboard')
+@section ('title', 'Cursos')
 @section ('content_header')
 <h1>Cursos</h1>
 @stop
@@ -18,7 +18,7 @@
             <th scope="col">Fecha de finalización</th>
             <th scope="col">Activo</th>
             <th scope="col">Acciones</th>
-            <th scope="col"></th>
+            <th colspan="2" scope="col"></th>
         <tr>
     </thead>
     <tbody>
@@ -30,6 +30,13 @@
             <td>{{ $course->date_start }}</td>
             <td>{{ $course->date_end }}</td>
             <td>{{ $course->active }}</td>
+            <td width="10px">
+                <a href="{{ url('enrollments/create') }}">
+                @csrf
+                    
+                    <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres incribirte?')"> Inscripción</button>
+      
+                    </a>
             <td width="10px">
                 @can('courses.index.edit', $course)
                 <a href="{{ url('/courses/'.$course->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
@@ -43,7 +50,6 @@
                     </form>
                 @endcan
             </td>
-
         </tr>
     @endforeach
     </tbody>

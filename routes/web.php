@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StudentsController;
 use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TeachersController;
+use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\Security;
 
 /*
@@ -26,6 +27,8 @@ Route::resource('courses','App\Http\Controllers\CoursesController');
 Route::resource('teachers','App\Http\Controllers\TeachersController');
 Route::resource('subjects','App\Http\Controllers\SubjectController');
 Route::resource('schedules','App\Http\Controllers\ScheduleController');
+Route::resource('enrollments','App\Http\Controllers\EnrollmentsController');
+
 
 
 Route::middleware([
@@ -41,6 +44,8 @@ Route::middleware([
     Route::resource('courses',CoursesController::class)->names('courses.index');
     Route::resource('teachers',TeachersController::class)->names('teachers.index');
     Route::get('permissions',[Security\PermissionsController::class, 'index'])->name('permissions.index');
+    Route::resource('enrollments',EnrollmentController::class)->names('enrollments.index');
+    Route::resource('enrollments',EnrollmentController::class)->names('enrollments.create');
 
 });
 

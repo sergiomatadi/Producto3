@@ -16,6 +16,7 @@
             <th scope="col">Inicio</th>
             <th scope="col">Fin</th>
             <th scope="col">Asignatura</th>
+            <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
     <tbody>
@@ -26,19 +27,17 @@
             <td>{{ $schedule->time_start }}</td>
             <td>{{ $schedule->time_end }}</td>
             <td>{{ $schedule->subject }}</td>
-            <td>
+            <td width="10px">
 
-            <a href="{{ url('/schedules/'.$schedule->id.'/edit') }}"class="text-decoration-none mt-1"><input type="submit" style="text-decoration:none" value="Editar">
+            <a href="{{ url('/schedules/'.$schedule->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
             </a>
-
-
-            <form action="{{ url('/schedules/'.$schedule->id ) }}" method="post">
-            @csrf
-            {{ method_field('DELETE') }}
-            <input type="submit" class="mt-3"onclick="return confirm('¿Quieres eliminar?')" value="Borrar">
-            </form>
+            <td width="10px">
+                <form action="{{ url('/schedules/'.$schedule->id ) }}" method="post">
+                    @csrf
+                    {{ method_field('DELETE') }}
+                    <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
+                </form>
             </td>
-
         </tr>
     @endforeach
     </tbody>

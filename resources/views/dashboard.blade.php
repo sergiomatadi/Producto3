@@ -26,10 +26,10 @@
                                     </div>
                                     <div class="pl-3">
                                         <div class="mb-2">
-                                            <a href="#" class="h5 font-weight-bolder text-dark">Documentación</a>
+                                            <a href="{{ url('/enrollments/create') }}" class="h5 font-weight-bolder text-dark">Inscripción a cursos</a>
                                         </div>
                                         <p class="text-muted small">
-                                            Docmuentacion sobre CodersTeam!!
+                                            Inscribete a los cursos disponibles en CodersTeam !!!
                                         </p>
                                     </div>
                                 </div>

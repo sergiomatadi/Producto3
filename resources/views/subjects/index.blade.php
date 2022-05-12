@@ -16,6 +16,7 @@
             <th scope="col">Color</th>
             <th scope="col">Curso</th>
             <th scope="col">Profesor</th>
+            <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
     <tbody>
@@ -26,19 +27,16 @@
             <td>{{ $subject->color }}</td>
             <td>{{ $subject->course }}</td>
             <td>{{ $subject->teacher }}</td>
-            <td>
-
-            <a href="{{ url('/subjects/'.$subject->id.'/edit') }}"class="text-decoration-none mt-1"><input type="submit" style="text-decoration:none" value="Editar">
+            <td width="10px">
+            <a href="{{ url('/subjects/'.$subject->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
             </a>
-
-
+            <td width="10px">
             <form action="{{ url('/subjects/'.$subject->id ) }}" method="post">
             @csrf
             {{ method_field('DELETE') }}
-            <input type="submit" class="mt-3"onclick="return confirm('¿Quieres eliminar?')" value="Borrar">
+            <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
             </form>
             </td>
-
         </tr>
     @endforeach
     </tbody>

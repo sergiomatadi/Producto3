@@ -109,4 +109,12 @@ class CoursesController extends Controller
         courses::destroy($id);
         return redirect('courses');
     }
+
+
+    public function inscription($id)
+    {
+        //
+        $courses=courses::findOrFail($id);
+        return redirect('enrollments.create');
+    }
 }

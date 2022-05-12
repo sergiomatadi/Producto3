@@ -308,6 +308,10 @@ return [
                 ],
                 [
                     'text'    => 'PVP',
+                    'url'     => 'exams','App\Http\Controllers\ExamsController',
+                ],
+                [
+                    'text'    => 'PVP',
                     'url'     => '#',
                     'submenu' => [
                         [

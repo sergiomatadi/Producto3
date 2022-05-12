@@ -17,5 +17,18 @@ class Courses extends Model
         return $this->hasMany(Subject::class);
     }
 
+    public function students() {
+        return $this->belongsToMany(students::class,'enrollments');
+        return $this->belongsToMany(students::class,'clases');
+    }
+
+    public function teachers() {
+        return $this->belongsToMany(teachers::class,'clases');
+    }
+
+    public function schedules() {
+        return $this->belongsToMany(schedules::class,'clases');
+    }
+
 
 }

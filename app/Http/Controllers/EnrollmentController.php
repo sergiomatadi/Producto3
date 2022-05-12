@@ -19,7 +19,15 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        
+        $date['enrollments']=enrollment::paginate(5);
+        foreach ($date['enrollments'] as $enrollment) {
+            
+            $fetch_course=Courses::findOrFail($enrollment->id_course);
+            $enrollment['course']=$fetch_course->name;
+        }
+
+      
+
         return view ('enrollments.index', $date);
     }
 
@@ -31,12 +39,11 @@ class EnrollmentController extends Controller
     public function create()
 
     {
-        
+       
         $user = auth()->user();
-        $teachers=teachers::all();
         $courses=courses::all();
         $students=students::all();
-        return view ('enrollments.create',compact('courses','teachers','students'));
+        return view ('enrollments.create',compact('courses','students'));
     }
 
     /**
@@ -50,7 +57,7 @@ class EnrollmentController extends Controller
 
         $dateEnrollment = request()->except('_token');
         Enrollment::insert($dateEnrollment);
-        return view('dashboard');;
+        return view('dashboard');
        
        
            

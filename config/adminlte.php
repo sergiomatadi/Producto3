@@ -274,6 +274,12 @@ return [
 
         ],
         [
+            'text' => 'Inscripciones',
+            'url'  => 'enrollments','App\Http\Controllers\EnrollmentController',
+            'icon' => 'fas fa-fw fa-book',
+
+        ],
+        [
             'text' => 'Asignaturas',
             'url'  => 'subjects','App\Http\Controllers\SubjectController',
             'icon' => 'fas fa-fw fa-book',
@@ -286,13 +292,19 @@ return [
 
         ],
         [
-            'text'    => 'Cursos',
-            'url'  => 'courses','App\Http\Controllers\CoursesController',
+            'text'    => 'Clases',
+            'url'  => 'clases','App\Http\Controllers\ClasesController',
+            'icon'    => 'fas fa-fw fa-book',
+
+        ],
+        [
+            'text'    => '#####',
+            'url'  => '#',
             'icon'    => 'fas fa-fw fa-book',
             'submenu' => [
                 [
-                    'text' => 'Asignaturas',
-                    'url'  => '#',
+                    'text' => 'Trabajos',
+                    'url'  => 'works','App\Http\Controllers\WorksController',
                 ],
                 [
                     'text'    => 'PVP',

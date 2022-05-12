@@ -303,8 +303,8 @@ return [
             'icon'    => 'fas fa-fw fa-book',
             'submenu' => [
                 [
-                    'text' => 'Clases',
-                    'url'  => '#',
+                    'text' => 'Trabajos',
+                    'url'  => 'works','App\Http\Controllers\WorksController',
                 ],
                 [
                     'text'    => 'PVP',

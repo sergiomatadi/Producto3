@@ -32,7 +32,7 @@
                         <select name="id_schedule" id="id-schedule">
                          @foreach ($schedules as $schedule)
                             <option value="{{ $schedule->id }}" @if (isset($selectedSchedule)) @selected($selectedSchedule->id ==
-                             $schedule->id) @endif> {{ $schedule->id }}</option>
+                             $schedule->id) @endif> {{ $schedule->id. ': '.$schedule->day}}</option>
                         @endforeach
                     </select>
                 </div>

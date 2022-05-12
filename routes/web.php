@@ -6,6 +6,7 @@ use App\Http\Controllers\CoursesController;
 use App\Http\Controllers\TeachersController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\ClasesController;
+use App\Http\Controllers\WorksController;
 
 use App\Http\Controllers\Security;
 
@@ -29,8 +30,9 @@ Route::resource('courses','App\Http\Controllers\CoursesController');
 Route::resource('teachers','App\Http\Controllers\TeachersController');
 Route::resource('subjects','App\Http\Controllers\SubjectController');
 Route::resource('schedules','App\Http\Controllers\ScheduleController');
-Route::resource('enrollments','App\Http\Controllers\EnrollmentsController');
+Route::resource('enrollments','App\Http\Controllers\EnrollmentController');
 Route::resource('clases','App\Http\Controllers\ClasesController');
+Route::resource('works','App\Http\Controllers\WorksController');
 
 
 
@@ -50,6 +52,7 @@ Route::middleware([
     Route::resource('enrollments',EnrollmentController::class)->names('enrollments.index');
     Route::resource('enrollments',EnrollmentController::class)->names('enrollments.create');
     Route::resource('clases',ClasesController::class)->names('clases.index');
+    Route::resource('works',WorksController::class)->names('works.index');
 
 });
 

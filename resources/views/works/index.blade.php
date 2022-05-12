@@ -1,46 +1,45 @@
 @extends('adminlte::page')
-@section ('title', 'Clases')
+@section ('title', 'Trabajos')
 @section ('content_header')
-<h1>Clases</h1>
+<h1>Trabajos</h1>
 @stop
 
 @section ('content')
 @can('admin.users.index')
-<a href="clases/create" class="btn btn-primary mt-4">CREAR</a>
+<a href="works/create" class="btn btn-primary mt-4">CREAR</a>
 @endcan
 <table class="table table-striped table-light mt-4">
     <thead class="thead-light">
         <tr>
             <th scope="col">Id</th>
-            <th scope="col">Profesor</th>
-            <th scope="col">Curso</th>
-            <th scope="col">Calendario</th>
+            <th scope="col">Clase</th>
+            <th scope="col">Estudiante</th>
             <th scope="col">Nombre</th>
-            <th scope="col">Color</th>
-            <th colspan="2" scope="col">Acciones</th>
+            <th scope="col">Notas</th>
+            <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
     <tbody>
-    @foreach( $clases as $clase )
+        @foreach( $works as $work )
         <tr>
-            <td>{{ $clase->id }}</td>
-            <td>{{ $clase->teacher }}</td>
-            <td>{{ $clase->course }}</td>
-            <td>{{ $clase->schedule }}</td>
-            <td>{{ $clase->name }}</td>
-            <td>{{ $clase->color }}</td>
+            <td>{{ $work->id }}</td>
+            <td>{{ $work->clase }}</td>
+            <td>{{ $work->student }}</td>
+            <td>{{ $work->name}}</td>
+            <td>{{ $work->mark }}</td>
             <td width="10px">
-            <a href="{{ url('/clases/'.$clase->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
+            <a href="{{ url('/works/'.$work->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
             </a>
             <td width="10px">
-            <form action="{{ url('/clases/'.$clase->id ) }}" method="post">
+            <form action="{{ url('/works/'.$work->id) }}" method="post">
             @csrf
             {{ method_field('DELETE') }}
             <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
             </form>
             </td>
         </tr>
-    @endforeach
+        @endforeach
+
     </tbody>
 </table>
 @stop

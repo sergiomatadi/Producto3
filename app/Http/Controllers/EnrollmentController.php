@@ -24,6 +24,8 @@ class EnrollmentController extends Controller
             
             $fetch_course=Courses::findOrFail($enrollment->id_course);
             $enrollment['course']=$fetch_course->name;
+            $fetch_student=Students::findOrFail($enrollment->id_student);
+            $enrollment['student']=$fetch_student->name;
         }
 
       

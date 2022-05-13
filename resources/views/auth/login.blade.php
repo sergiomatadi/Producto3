@@ -48,6 +48,11 @@
                                 {{ __('Forgot your password?') }}
                             </a>
                         @endif
+                        @if (Route::has('password.request'))
+                        <a class="text-muted me-3" href="{{ route('register') }}">
+                            {{ __('Register') }}
+                        </a>
+                    @endif
 
                         <x-jet-button>
                             {{ __('Log in') }}

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Subject;
 use App\Models\Courses;
 use App\Models\Teachers;
+use App\Models\Students;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 
 class SubjectController extends Controller
@@ -17,7 +19,23 @@ class SubjectController extends Controller
     public function index()
     {
         //
-        $date['subjects']=subject::paginate(5);
+        $user = auth()->user();
+        if ($user->hasRole('Admin')) {
+            $date['subjects']=subject::paginate(5);
+        } else if ($user->hasRole('Teacher')) {
+            $teacher=teachers::where('email', $user->email)->first();
+            $date['subjects']=subject::where('id_teacher', $teacher->id)->get();
+        } else if ($user->hasRole('Students')) {
+            $student=students::where('email', $user->email)->first();
+            $enrollments = enrollment::where('id_student', $student->id)->get();
+            $student_enrollments = array();
+            foreach($enrollments as $enrollment){
+                array_push($student_enrollments, $enrollment->id_course);
+            }
+
+            $date['subjects']=subject::whereIn('id_course', $student_enrollments)->get();
+        }
+
         foreach ($date['subjects'] as $subject) {
             $fetch_teacher=Teachers::findOrFail($subject->id_teacher);
             $subject['teacher']=$fetch_teacher->name . ' ' . $fetch_teacher->surname;

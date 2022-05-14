@@ -53,15 +53,43 @@ class UserSeeder extends Seeder
         $user->assignRole($role1);
 
         $user=new User;
-        $user->name = 'Ser';
-        $user->email = 'ser@mail.com';
+        $user->name = 'Teacher1';
+        $user->email = 'teacher1@mail.com';
         $user->password = bcrypt('12345678');
         $user->save();
         $user->assignRole($role2);
 
         $user=new User;
-        $user->name = 'student';
-        $user->email = 'student@mail.com';
+        $user->name = 'Teacher2';
+        $user->email = 'teacher2@mail.com';
+        $user->password = bcrypt('12345678');
+        $user->save();
+        $user->assignRole($role2);
+
+        $user=new User;
+        $user->name = 'Teacher3';
+        $user->email = 'teacher3@mail.com';
+        $user->password = bcrypt('12345678');
+        $user->save();
+        $user->assignRole($role2);
+
+        $user=new User;
+        $user->name = 'Student1';
+        $user->email = 'student1@mail.com';
+        $user->password = bcrypt('12345678');
+        $user->save();
+        $user->assignRole($role3);
+
+        $user=new User;
+        $user->name = 'Student2';
+        $user->email = 'student2@mail.com';
+        $user->password = bcrypt('12345678');
+        $user->save();
+        $user->assignRole($role3);
+
+        $user=new User;
+        $user->name = 'Student3';
+        $user->email = 'student3@mail.com';
         $user->password = bcrypt('12345678');
         $user->save();
         $user->assignRole($role3);

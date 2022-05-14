@@ -18,31 +18,27 @@ class TeacherSeeder extends Seeder
     {
 
         $teacher=new Teachers;
-        $teacher->name = 'Sergio';
-        $teacher->surname = 'Alvarez';
+        $teacher->name = 'Teacher';
+        $teacher->surname = '1';
         $teacher->telephone = '625625625';
         $teacher->nif = '12345678A';
-        $teacher->email = 'ser@mail.com';
+        $teacher->email = 'teacher1@mail.com';
         $teacher->save();
 
         $teacher=new Teachers;
-        $teacher->name = 'Denisse';
-        $teacher->surname = 'Gonzalez';
+        $teacher->name = 'Teacher';
+        $teacher->surname = '2';
         $teacher->telephone = '625625625';
         $teacher->nif = '12345678A';
-        $teacher->email = 'giovanna71@example.com';
+        $teacher->email = 'teacher2@mail.com';
         $teacher->save();
 
         $teacher=new Teachers;
-        $teacher->name = 'Luciano';
-        $teacher->surname = 'Hayer';
+        $teacher->name = 'Teacher';
+        $teacher->surname = '3';
         $teacher->telephone = '625625625';
         $teacher->nif = '12345678A';
-        $teacher->email = 'roconner@example.com';
+        $teacher->email = 'teacher3@mail.com';
         $teacher->save();
-
-
-
-
     }
 }

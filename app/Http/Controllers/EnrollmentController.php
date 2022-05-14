@@ -19,16 +19,23 @@ class EnrollmentController extends Controller
      */
     public function index()
     {
-        $date['enrollments']=enrollment::paginate(5);
+        $user = auth()->user();
+        if ($user->hasRole('Admin') || $user->hasRole('Teacher')) {
+            $date['enrollments']=enrollment::paginate(5);
+        } else if ($user->hasRole('Students')) {
+            $student=students::where('email', $user->email)->first();
+            $date['enrollments']=enrollment::where('id_student', $student->id)->get();
+        }
+
         foreach ($date['enrollments'] as $enrollment) {
-            
+
             $fetch_course=Courses::findOrFail($enrollment->id_course);
             $enrollment['course']=$fetch_course->name;
             $fetch_student=Students::findOrFail($enrollment->id_student);
             $enrollment['student']=$fetch_student->name;
         }
 
-      
+
 
         return view ('enrollments.index', $date);
     }
@@ -41,11 +48,11 @@ class EnrollmentController extends Controller
     public function create()
 
     {
-       
+
         $user = auth()->user();
+        $student=students::where('email', $user->email)->first();
         $courses=courses::all();
-        $students=students::all();
-        return view ('enrollments.create',compact('courses','students'));
+        return view ('enrollments.create',compact('courses','student'));
     }
 
     /**
@@ -60,9 +67,9 @@ class EnrollmentController extends Controller
         $dateEnrollment = request()->except('_token');
         Enrollment::insert($dateEnrollment);
         return view('dashboard');
-       
-       
-           
+
+
+
     }
 
     /**
@@ -85,7 +92,7 @@ class EnrollmentController extends Controller
     public function edit($id)
     {
 
-    
+
     }
 
     /**

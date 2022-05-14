@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Exams;
 use App\Models\Students;
 use App\Models\Clases;
+use App\Models\Teachers;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 
 class ExamsController extends Controller
@@ -16,7 +18,40 @@ class ExamsController extends Controller
      */
     public function index()
     {
-        $date['exams']=Exams::paginate(5);
+        $user = auth()->user();
+        if ($user->hasRole('Admin')) {
+            $date['exams']=Exams::paginate(5);
+        } else if ($user->hasRole('Teacher')) {
+            $teacher=teachers::where('email', $user->email)->first();
+            $clases=clases::where('id_teacher', $teacher->id)->get();
+            $teacher_clases= array();
+
+            foreach($clases as $clase){
+                array_push($teacher_clases, $clase->id);
+            }
+
+            $date['exams']=Exams::whereIn('id_class', $teacher_clases)->get();
+
+        } else if ($user->hasRole('Students')) {
+            $student=students::where('email', $user->email)->first();
+            $enrollments = enrollment::where('id_student', $student->id)->get();
+            $student_enrollments = array();
+            foreach($enrollments as $enrollment){
+                array_push($student_enrollments, $enrollment->id_course);
+            }
+
+            $clases=clases::whereIn('id_course', $student_enrollments)->get();
+            $student_clases=array();
+            foreach($clases as $clase){
+                array_push($student_clases, $clase->id);
+            }
+
+            $date['exams']=Exams::whereIn('id_class', $student_clases)
+            ->where('id_student', $student->id)
+            ->get();
+        }
+
+
         foreach ($date['exams'] as $exam){
             $fetch_student=Students::findOrFail($exam->id_student);
             $exam['student']=$fetch_student->name . ' ' . $fetch_student->username;
@@ -74,10 +109,10 @@ class ExamsController extends Controller
          $exams = Exams::findOrFail($id);
         // $selectedClase=clases::findOrFail($exams->id_clases);
          $selectedStudent=students::findOrFail($exams->id_student);
- 
+
          $clases=clases::all();
          $students=students::all();
- 
+
          return view ('exams.edit', compact('exams', 'selectedStudent', 'clases', 'students'));
     }
 

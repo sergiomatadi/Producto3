@@ -8,6 +8,7 @@ use App\Models\Teachers;
 use App\Models\Schedule;
 use App\Models\Schedules;
 use App\Models\Courses;
+use App\Models\Enrollment;
 use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
@@ -21,7 +22,26 @@ class ClasesController extends Controller
      */
     public function index()
     {
-        $date['clases']=clases::paginate(5);
+        $user = auth()->user();
+
+        if ($user->hasRole('Admin')) {
+            $date['clases']=clases::paginate(5);
+        } else if ($user->hasRole('Teacher')) {
+
+            $teacher=teachers::where('email', $user->email)->first();
+            $date['clases']=clases::where('id_teacher', $teacher->id)->get();
+
+        } else if ($user->hasRole('Students')) {
+            $student=students::where('email', $user->email)->first();
+            $enrollments = enrollment::where('id_student', $student->id)->get();
+            $student_enrollments = array();
+            foreach($enrollments as $enrollment){
+                array_push($student_enrollments, $enrollment->id_course);
+            }
+
+            $date['clases']=clases::whereIn('id_course', $student_enrollments)->get();
+        }
+
         foreach($date['clases'] as $clase){
             $fetch_teacher=Teachers::findOrFail($clase->id_teacher);
             $clase['teacher']=$fetch_teacher->name.' ' .$fetch_teacher->surname;
@@ -91,7 +111,7 @@ class ClasesController extends Controller
         $teachers=teachers::all();
         $schedule=schedule::all();
         return view('clases.edit', compact('clases','schedule','courses','teachers','selectedCourse','selectedTeacher','selectedSchudule'));
-        
+
     }
 
     /**

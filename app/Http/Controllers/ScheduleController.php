@@ -21,6 +21,18 @@ class ScheduleController extends Controller
         $user = auth()->user();
         if ($user->hasRole('Admin') || $user->hasRole('Teacher')) {
             $date['schedules']=schedule::paginate(5);
+        } else if ($user->hasRole('Teacher')) {
+            $teacher=teachers::where('email', $user->email)->first();
+            $subjects=subject::where('id_teacher', $teacher->id)->get();
+            $teacher_subjects= array();
+
+            foreach($subjects as $subject){
+                array_push($teacher_subjects, $subject->id);
+            }
+
+            $date['schedules']=schedule::whereIn('id_subject', $teacher_subjects)->get();
+
+
         } else if ($user->hasRole('Students')) {
             $student=students::where('email', $user->email)->first();
             $enrollments = enrollment::where('id_student', $student->id)->get();

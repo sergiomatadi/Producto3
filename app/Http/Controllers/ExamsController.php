@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Exams;
 use App\Models\Students;
 use App\Models\Clases;
+use App\Models\Teachers;
 use App\Models\Enrollment;
 use Illuminate\Http\Request;
 
@@ -18,8 +19,19 @@ class ExamsController extends Controller
     public function index()
     {
         $user = auth()->user();
-        if ($user->hasRole('Admin') || $user->hasRole('Teacher')) {
+        if ($user->hasRole('Admin')) {
             $date['exams']=Exams::paginate(5);
+        } else if ($user->hasRole('Teacher')) {
+            $teacher=teachers::where('email', $user->email)->first();
+            $clases=clases::where('id_teacher', $teacher->id)->get();
+            $teacher_clases= array();
+
+            foreach($clases as $clase){
+                array_push($teacher_clases, $clase->id);
+            }
+
+            $date['exams']=Exams::whereIn('id_class', $teacher_clases)->get();
+
         } else if ($user->hasRole('Students')) {
             $student=students::where('email', $user->email)->first();
             $enrollments = enrollment::where('id_student', $student->id)->get();

@@ -20,8 +20,11 @@ class SubjectController extends Controller
     {
         //
         $user = auth()->user();
-        if ($user->hasRole('Admin') || $user->hasRole('Teacher')) {
+        if ($user->hasRole('Admin')) {
             $date['subjects']=subject::paginate(5);
+        } else if ($user->hasRole('Teacher')) {
+            $teacher=teachers::where('email', $user->email)->first();
+            $date['subjects']=subject::where('id_teacher', $teacher->id)->get();
         } else if ($user->hasRole('Students')) {
             $student=students::where('email', $user->email)->first();
             $enrollments = enrollment::where('id_student', $student->id)->get();

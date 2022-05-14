@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Works;
 use App\Models\Students;
 use App\Models\Clases;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 
 class WorksController extends Controller
@@ -16,7 +17,29 @@ class WorksController extends Controller
      */
     public function index()
     {
-        $date['works']=Works::paginate(5);
+        $user = auth()->user();
+        if ($user->hasRole('Admin') || $user->hasRole('Teacher')) {
+            $date['works']=Works::paginate(5);
+        } else if ($user->hasRole('Students')) {
+            $student=students::where('email', $user->email)->first();
+            $enrollments = enrollment::where('id_student', $student->id)->get();
+            $student_enrollments = array();
+            foreach($enrollments as $enrollment){
+                array_push($student_enrollments, $enrollment->id_course);
+            }
+
+            $clases=clases::whereIn('id_course', $student_enrollments)->get();
+            $student_clases=array();
+            foreach($clases as $clase){
+                array_push($student_clases, $clase->id);
+            }
+
+            $date['works']=Works::whereIn('id_class', $student_clases)
+            ->where('id_student', $student->id)
+            ->get();
+        }
+
+
         foreach ($date['works'] as $work){
             $fetch_student=Students::findOrFail($work->id_student);
             $work['student']=$fetch_student->name . ' ' . $fetch_student->username;

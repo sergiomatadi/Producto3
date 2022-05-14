@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Schedule;
 use App\Models\Subject;
+use App\Models\Students;
+use App\Models\Enrollment;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -16,7 +18,27 @@ class ScheduleController extends Controller
     public function index()
     {
         //
-        $date['schedules']=schedule::paginate(5);
+        $user = auth()->user();
+        if ($user->hasRole('Admin') || $user->hasRole('Teacher')) {
+            $date['schedules']=schedule::paginate(5);
+        } else if ($user->hasRole('Students')) {
+            $student=students::where('email', $user->email)->first();
+            $enrollments = enrollment::where('id_student', $student->id)->get();
+            $student_enrollments = array();
+            foreach($enrollments as $enrollment){
+                array_push($student_enrollments, $enrollment->id_course);
+            }
+
+            $subjects=subject::whereIn('id_course', $student_enrollments)->get();
+            $student_subjects = array();
+            foreach($subjects as $subject){
+                array_push($student_subjects, $subject->id);
+            }
+
+            $date['schedules']=schedule::whereIn('id_subject', $student_subjects)->get();
+        }
+
+
         foreach ($date['schedules'] as $schedule) {
             $fetch_subject=Subject::findOrFail($schedule->id_subject);
             $schedule['subject']=$fetch_subject->name;

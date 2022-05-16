@@ -30,6 +30,7 @@
             <td>{{ $clase->name }}</td>
             <td>{{ $clase->color }}</td>
             <td width="10px">
+            @can('teachers.index')
             <a href="{{ url('/clases/'.$clase->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
             </a>
             <td width="10px">
@@ -38,6 +39,7 @@
             {{ method_field('DELETE') }}
             <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
             </form>
+            @endcan
             </td>
         </tr>
     @endforeach

@@ -1,8 +1,6 @@
 <div>
 <div class="card">
-    <div class="card-header">
-        <input wire:model="search" class="form-control" placeholder="Introce el nombre o correo de un usuario">
-    </div>
+
     <div class="card-body">
         <table class="table table-striped">
             <thead>
@@ -26,9 +24,6 @@
                 @endforeach
             </tbody>
         </table>
-    </div>
-    <div class="card-footer">
-        {{$users->links()}}
     </div>
 </div>
 </div>

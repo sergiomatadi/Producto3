@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
         Permission::create(['name' =>'students.index.destroy'])->syncRoles([$role1,$role2]);
 
         Permission::create(['name' =>'teachers.index'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' =>'teachers.index.create'])->syncRoles([$role1]);
+        Permission::create(['name' =>'teachers.index.create'])->syncRoles([$role1,$role2]);
         Permission::create(['name' =>'teachers.index.edit'])->syncRoles([$role1]);
         Permission::create(['name' =>'teachers.index.destroy'])->syncRoles([$role1]);
 

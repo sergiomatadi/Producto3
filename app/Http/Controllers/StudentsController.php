@@ -22,7 +22,7 @@ class StudentsController extends Controller
     public function index()
     {
         //
-        $date['students']=students::paginate(5);
+        $date['students']=students::paginate(15);
         return view ('students.index', $date);
     }
 

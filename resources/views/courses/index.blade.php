@@ -23,8 +23,7 @@
             <th scope="col">Fecha de inicio</th>
             <th scope="col">Fecha de finalización</th>
             <th scope="col">Activo</th>
-            <th scope="col">Acciones</th>
-            <th colspan="2" scope="col"></th>
+            <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
     <tbody>

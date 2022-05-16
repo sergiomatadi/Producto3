@@ -43,5 +43,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function AdminLTE_profile_url()
+    {
+        return 'user/profile';
+    }
 }
 

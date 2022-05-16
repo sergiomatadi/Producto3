@@ -20,6 +20,10 @@ class Enrollment extends Model
         return $this->hasMany(Subject::class);
     }
 
+    public function courses() {
+        return $this->hasMany(courses::class);
+    }
+
     public function teachers() {
         return $this->hasMany(teachers::class);
     }

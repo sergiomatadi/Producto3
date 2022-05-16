@@ -91,6 +91,15 @@ class EnrollmentController extends Controller
      */
     public function edit($id)
     {
+        $enrollment=enrollment::all();
+
+        $enrollment=enrollment::findOrFail($id);
+        //$selectedCourse=courses::findOrFail($enrollment->id_course);
+
+        $student=students::all();
+        $courses=courses::all();
+
+    return view ('enrollments.edit', compact('enrollment',  'student', 'courses'));
 
 
     }
@@ -104,7 +113,11 @@ class EnrollmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dateEnrollment = request()->except(['_token','_method']);
+        enrollment::where('id','=',$id)->update($dateEnrollment);
+
+
+        return redirect('enrollments')->with('message','Inscripción editada correctamente');
     }
 
     /**
@@ -115,6 +128,8 @@ class EnrollmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        enrollment::destroy($id);
+        return redirect ('enrollments');
     }
+
 }

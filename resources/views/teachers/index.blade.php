@@ -5,7 +5,7 @@
 @stop
 
 @section ('content')
-@can('teachers.index.create')    
+@can('admin.users.index')   
 <a href="teachers/create" class="btn btn-primary mt-4">CREAR</a>
 @endcan
 <table class="table table-striped table-light mt-4">
@@ -17,8 +17,7 @@
             <th scope="col">Teléfono</th>
             <th scope="col">NIF</th>
             <th scope="col">Email</th>
-            <th scope="col">Acciones</th>
-            <th scope="col"></th>
+            <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
     <tbody>
@@ -31,7 +30,7 @@
             <td>{{ $teacher->nif }}</td>
             <td>{{ $teacher->email }}</td>
             <td width="10px">
-                @can('teachers.index.create', $teacher)
+                @can('admin.users.index')
                 <a href="{{ url('/teachers/'.$teacher->id.'/edit') }}" class="btn btn-warning btn-sm">Editar
                 </a>
             </td>

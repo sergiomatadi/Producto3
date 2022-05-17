@@ -243,7 +243,7 @@ return [
             'text'        => 'Home',
             'route'         => 'dashboard',
             'icon'        => 'fas fa-fw fa-home',
-            
+
         ],
         [
             'text'        => 'Usuarios',
@@ -266,7 +266,6 @@ return [
             'url'  => 'teachers','App\Http\Controllers\TeachersController',
             'icon' => 'fas fa-fw fa-user',
             'can'  => 'admin.users.index',
-            'can'  => 'teachers.index',
 
         ],
         [

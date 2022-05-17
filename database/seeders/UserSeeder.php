@@ -40,10 +40,14 @@ class UserSeeder extends Seeder
         Permission::create(['name' =>'teachers.index.destroy'])->syncRoles([$role1]);
 
         Permission::create(['name' =>'courses.index'])->syncRoles([$role1,$role2,$role3]);
-        Permission::create(['name' =>'courses.index.create'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' =>'courses.index.edit'])->syncRoles([$role1,$role2]);
-        Permission::create(['name' =>'courses.index.destroy'])->syncRoles([$role1,$role2]);
+        Permission::create(['name' =>'courses.index.create'])->syncRoles([$role1]);
+        Permission::create(['name' =>'courses.index.edit'])->syncRoles([$role1]);
+        Permission::create(['name' =>'courses.index.destroy'])->syncRoles([$role1]);
 
+        Permission::create(['name' =>'enrollments.index'])->syncRoles([$role1,$role2,$role3]);
+        Permission::create(['name' =>'enrollments.index.create'])->syncRoles([$role3]);
+        Permission::create(['name' =>'enrollments.index.edit'])->syncRoles([$role3]);
+        Permission::create(['name' =>'enrollments.index.destroy'])->syncRoles([$role3]);
 
         $user=new User;
         $user->name = 'Admin';

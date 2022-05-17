@@ -11,6 +11,7 @@
             <th scope="col">Id</th>
             <th scope="col">Alumno</th>
             <th scope="col">Curso</th>
+            <th scope="col">Estado</th>
             <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
@@ -22,14 +23,16 @@
             <td>{{ $enrollment->course }}</td>
             <td>{{ $enrollment->status }}</td>
             <td width="10px">
-                <a href=""class="btn btn-warning btn-sm">Editar
+                @can('admin.user.index')
+                <a href="{{ url('/enrollments/'.$enrollment->id.'/edit') }}" class="btn btn-warning btn-sm">Editar
                 </a>
                 <td width="10px">
-                <form action="" method="post">
+                <form action="{{ url('/enrollments/'.$enrollment->id) }}" method="post">
                 @csrf
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
-                </form>          
+                </form>   
+                @endcan       
             @endforeach
             </td>
         </tr>            

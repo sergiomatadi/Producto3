@@ -8,12 +8,14 @@
 @can('admin.users.index')
 <a href="courses/create" class="btn btn-primary mt-4">CREAR</a>
 @endcan
+@can('enrollments.index.create')
 <a href="{{ url('enrollments/create') }}">
     @csrf
-        
+
         <button type="submit" class="btn btn-danger mt-4"onclick="return confirm('¿Quieres incribirte?')"> Inscripción</button>
 
-        </a>
+</a>
+@endcan
 <table class="table table-striped table-light mt-4">
     <thead class="thead-light">
         <tr>
@@ -23,8 +25,7 @@
             <th scope="col">Fecha de inicio</th>
             <th scope="col">Fecha de finalización</th>
             <th scope="col">Activo</th>
-            <th scope="col">Acciones</th>
-            <th colspan="2" scope="col"></th>
+            <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
     <tbody>
@@ -37,7 +38,7 @@
             <td>{{ $course->date_end }}</td>
             <td>{{ $course->active }}</td>
             <td width="10px">
-               
+
             <td width="10px">
                 @can('courses.index.edit', $course)
                 <a href="{{ url('/courses/'.$course->id.'/edit') }}"class="btn btn-warning btn-sm">Editar

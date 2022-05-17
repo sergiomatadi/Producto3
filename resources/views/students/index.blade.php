@@ -5,7 +5,9 @@
 @stop
 
 @section ('content')
+@can('admin.users.index')
 <a href="students/create" class="btn btn-primary mt-4">CREAR</a>
+@endcan
 <table class="table table-striped table-light mt-4">
     <thead class="thead-light">
         <tr>
@@ -17,8 +19,7 @@
             <th scope="col">Teléfono</th>
             <th scope="col">NIF</th>
             <th scope="col">Fecha de registro</th>
-            <th scope="col">Acciones</th>
-            <th scope="col"></th>
+            <th colspan="3" scope="col">Acciones</th>
         <tr>
     </thead>
     <tbody>
@@ -32,7 +33,8 @@
             <td>{{ $students->telephone }}</td>
             <td>{{ $students->nif }}</td>
             <td>{{ $students->date_registered }}</td>
-            <td width="10px">            
+            <td width="10px">      
+                @can('admin.users.index')      
                 <a href="{{ url('/students/'.$students->id.'/edit') }}"class="btn btn-warning btn-sm">Editar        
                 </a>
             </td>
@@ -42,6 +44,7 @@
                 {{ method_field('DELETE') }}
                 <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
                 </form>
+                @endcan
             </td>
         </tr>
     @endforeach

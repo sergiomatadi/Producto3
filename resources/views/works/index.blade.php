@@ -5,7 +5,7 @@
 @stop
 
 @section ('content')
-@can('admin.users.index')
+@can('teachers.index')
 <a href="works/create" class="btn btn-primary mt-4">CREAR</a>
 @endcan
 <table class="table table-striped table-light mt-4">
@@ -28,6 +28,7 @@
             <td>{{ $work->name}}</td>
             <td>{{ $work->mark }}</td>
             <td width="10px">
+                @can('teachers.index')
             <a href="{{ url('/works/'.$work->id.'/edit') }}"class="btn btn-warning btn-sm">Editar
             </a>
             <td width="10px">
@@ -36,6 +37,7 @@
             {{ method_field('DELETE') }}
             <button type="submit" class="btn btn-danger btn-sm"onclick="return confirm('¿Quieres eliminar?')"> Borrar</button>
             </form>
+            @endcan
             </td>
         </tr>
         @endforeach

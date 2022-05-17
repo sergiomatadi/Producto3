@@ -46,6 +46,7 @@ return [
     */
 
     'logo' => '<b>CordesTeam</b>',
+    'icon' => 'fas-fa-fw fa-home',
     'logo_img' => null,
     'logo_img_class' => null,
     'logo_img_xl' => null,
@@ -69,7 +70,7 @@ return [
     'usermenu_header_class' => 'bg-primary',
     'usermenu_image' => false,
     'usermenu_desc' => false,
-    'usermenu_profile_url' => false,
+    'usermenu_profile_url' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -239,14 +240,15 @@ return [
         // Sidebar items:
 
         [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'text'        => 'Home',
+            'route'         => 'dashboard',
+            'icon'        => 'fas fa-fw fa-home',
+
         ],
         [
             'text'        => 'Usuarios',
             'route'         => 'admin.users.index',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-fw fa-users',
             'can'  => 'admin.users.index',
 
 
@@ -264,19 +266,18 @@ return [
             'url'  => 'teachers','App\Http\Controllers\TeachersController',
             'icon' => 'fas fa-fw fa-user',
             'can'  => 'admin.users.index',
-            'can'  => 'teachers.index',
 
         ],
         [
             'text' => 'Cursos',
             'url'  => 'courses','App\Http\Controllers\CoursesController',
-            'icon' => 'fas fa-fw fa-book',
+            'icon' => 'fas fa-fw  fa-graduation-cap',
 
         ],
         [
             'text' => 'Inscripciones',
             'url'  => 'enrollments','App\Http\Controllers\EnrollmentController',
-            'icon' => 'fas fa-fw fa-book',
+            'icon' => 'fas fa-fw fa-university',
 
         ],
         [
@@ -288,7 +289,7 @@ return [
         [
             'text' => 'Horario',
             'url'  => 'schedules','App\Http\Controllers\ScheduleController',
-            'icon' => 'fas fa-fw fa-book',
+            'icon' => 'fas fa-fw fa-table',
 
         ],
         [
@@ -298,64 +299,16 @@ return [
 
         ],
         [
-            'text'    => '#####',
-            'url'  => '#',
-            'icon'    => 'fas fa-fw fa-book',
-            'submenu' => [
-                [
-                    'text' => 'Trabajos',
-                    'url'  => 'works','App\Http\Controllers\WorksController',
-                ],
-                [
-                    'text'    => 'PVP',
-                    'url'     => 'exams','App\Http\Controllers\ExamsController',
-                ],
-                [
-                    'text'    => 'PVP',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-            'url'        => '#',
+            'text' => 'Trabajos',
+            'url'  => 'works','App\Http\Controllers\WorksController',
+            'icon'    => 'fas fa-fw fa-folder',
         ],
         [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-            'url'        => '#',
+            'text'    => 'PVP',
+            'url'     => 'exams','App\Http\Controllers\ExamsController',
+            'icon'    => 'fas fa-fw fa-edit',
         ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-            'url'        => '#',
-        ],
+
     ],
 
     /*

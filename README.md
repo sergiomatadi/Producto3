@@ -1,4 +1,4 @@
-# Producto3
+# Producto3_ Desarrollo de una aplicación de notas
 
 Desde nuestra carpeta de producto creamos el proyecto usando el comando: 
  laravel new academia --jet
